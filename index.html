@@ -42,16 +42,16 @@
   </style>
 </head>
 <body>
-  <h2>Daily Spend Tracker</h2>
+  <h2>Nuestros Gastos</h2>
   <table id="spendTable">
     <tr>
-      <th>Date</th>
-      <th>Category</th>
-      <th>Amount</th>
+      <th>Fecha</th>
+      <th>Categoría</th>
+      <th>Monto</th>
     </tr>
   </table>
   <br>
-  <input type="text" id="dateInput" placeholder="Date (MM/DD/YYYY)">
+  <input type="text" id="dateInput" placeholder="Fecha (MM/DD/YYYY)">
   <select id="categorySelect">
     <option value="Arriendo">Arriendo</option>
     <option value="Internet">Internet</option>
@@ -75,10 +75,10 @@
     <option value="Ahorro mensual">Ahorro mensual</option>
     <option value="Retirement">Retirement</option>
   </select>
-  <input type="text" id="amountInput" placeholder="Amount">
-  <button id="addSpendButton">Add Spend</button>
+  <input type="text" id="amountInput" placeholder="Monto">
+  <button id="addSpendButton">Añdir gasto</button>
   <br><br>
-  <button id="downloadReportButton">Download Report</button>
+  <button id="downloadReportButton">Descargar reporte</button>
   <script>
     $(document).ready(function() {
       $("#addSpendButton").click(function() {
