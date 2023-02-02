@@ -1,42 +1,22 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <base target="_top">
   </head>
   <body>
-    <h2>Daily Spend Tracker</h2>
-    <form id="form">
-      <label for="date">Date:</label>
-      <input type="text" id="date" name="date"><br><br>
-      <label for="amount">Amount:</label>
-      <input type="text" id="amount" name="amount"><br><br>
-      <label for="category">Category:</label>
-      <input type="text" id="category" name="category"><br><br>
-      <label for="user">User:</label>
-      <input type="text" id="user" name="user"><br><br>
-      <input type="submit" value="Submit">
+    <h1>Google Sheet Input Form</h1>
+    <form id="data-form">
+      <input type="text" name="date" placeholder="Date">
+      <input type="text" name="amount" placeholder="Amount">
+      <input type="text" name="category" placeholder="Category">
+      <input type="text" name="user" placeholder="User">
+      <input type="submit" value="Submit" onclick="submitForm()">
     </form>
-    <p id="message"></p>
-    <script>
-      $('#form').submit(function(event){
-        event.preventDefault();
-        var date = $('#date').val();
-        var amount = $('#amount').val();
-        var category = $('#category').val();
-        var user = $('#user').val();
-        $.ajax({
-          url: "https://script.google.com/macros/s/{SCRIPT_ID}/exec",
-          type: "post",
-          data: {
-            "date": date,
-            "amount": amount,
-            "category": category,
-            "user": user
-          },
-          success: function(response){
-            $('#message').text('Data submitted successfully.');
-          }
-        });
-      });
-    </script>
   </body>
+  <script>
+    function submitForm() {
+      google.script.run.processForm(document.getElementById("data-form"));
+      alert("Data submitted successfully!");
+    }
+  </script>
 </html>
