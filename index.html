@@ -1,124 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.16.0/dist/xlsx.full.min.js"></script>
-  <script>
-    var expenses = [];
-    
-    function addExpense() {
-    var category = $('#category').val();
-    var amount = $('#amount').val();
-    
-    expenses.push({ category: category, amount: amount });
-    
-    // code to update the expenses table
-  }
-    
-    function downloadReport() {
-    var csvContent = "data:text/csv;charset=utf-8,";
-    csvContent += "Category,Amount\n";
-    
-    expenses.forEach(function(expense) {
-      csvContent += expense.category + "," + expense.amount + "\n";
-    });
-    
-    var encodedUri = encodeURI(csvContent);
-    var link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "expenses.csv");
-    link.click();
-}
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 10px;
-      text-align: center;
-    }
-    h1 {
-      margin: 0;
-    }
-    section {
-      padding: 10px;
-    }
-    .container {
-      max-width: 375px;
-      margin: auto;
-    }
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-  </style>
-</head>
-<body>
-  <h2>Nuestros Gastos</h2>
-  <table id="spendTable">
-    <tr>
-      <th>Fecha</th>
-      <th>Categoría</th>
-      <th>Monto</th>
-    </tr>
-  </table>
-  <br>
-  <input type="text" id="dateInput" placeholder="Fecha (MM/DD/YYYY)">
-  <select id="categorySelect">
-    <option value="Arriendo">Arriendo</option>
-    <option value="Internet">Internet</option>
-    <option value="Luz">Luz</option>
-    <option value="Seguro carro">Seguro carro</option>
-    <option value="Seguro casa">Seguro casa</option>
-    <option value="Seguro salud">Seguro salud</option>
-    <option value="Supermercado">Supermercado</option>
-    <option value="Tarjetas tanita">Tarjetas tanita</option>
-    <option value="Tarjetas felipe">Tarjetas felipe</option>
-    <option value="Gasolina">Gasolina</option>
-    <option value="Peajes">Peajes</option>
-    <option value="IESS">IESS</option>
-    <option value="Parqueadero">Parqueadero</option>
-    <option value="Netflix">Netflix</option>
-    <option value="Apple music">Apple music</option>
-    <option value="Amazon prime">Amazon prime</option>
-    <option value="Salidas">Salidas</option>
-    <option value="Personal tanita">Personal tanita</option>
-    <option value="Personal felipe">Personal felipe</option>
-    <option value="Ahorro mensual">Ahorro mensual</option>
-    <option value="Retirement">Retirement</option>
-  </select>
-  <input type="text" id="amountInput" placeholder="Monto">
-  <button id="addSpendButton">Añdir gasto</button>
-  <br><br>
-  <button id="downloadReportButton">Descargar reporte</button>
-  <script>
-    $(document).ready(function() {
-      $("#addSpendButton").click(function() {
-        var date = $("#dateInput").val();
-        var category = $("#categoryInput").val();
-        var amount = $("#amountInput").val();
-        $("#spendTable").append("<tr><td>" + date + "</td><td>" + category + "</td><td>" + amount + "</td></tr>");
-      });
-      $("#downloadReportButton").click(function() {
-        var wb = XLSX.utils.table_to_book(document.getElementById("spendTable"), {sheet:"Sheet JS"});
-        XLSX.writeFile(wb, "daily_spend_report.xlsx");
-      });
-    });
-  </script>
-</body>
+  <head>
+    <title>Daily Spend Tracker</title>
+  </head>
+  <body>
+    <h1>Daily Spend Tracker</h1>
+    <form id="spend-form">
+      <label for="spend-category">Category:</label>
+      <select id="spend-category">
+        <option value="arriendo">Arriendo</option>
+        <option value="internet">Internet</option>
+        <option value="luz">Luz</option>
+        <!-- Add other options for the categories -->
+      </select>
+      <br>
+      <label for="spend-amount">Amount:</label>
+      <input type="number" id="spend-amount" required>
+      <br>
+      <button type="submit">Add Spend</button>
+    </form>
+    <br>
+    <button id="download-report">Download Report</button>
+    <script src="spend-tracker.js"></script>
+  </body>
 </html>
