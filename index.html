@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Daily Spend Tracker</title>
+    <base target="_top">
   </head>
   <body>
-    <h1>Daily Spend Tracker</h1>
-    <form id="spend-form">
-      <label for="spend-category">Category:</label>
-      <select id="spend-category">
-        <option value="arriendo">Arriendo</option>
-        <option value="internet">Internet</option>
-        <option value="luz">Luz</option>
-        <!-- Add other options for the categories -->
-      </select>
-      <br>
-      <label for="spend-amount">Amount:</label>
-      <input type="number" id="spend-amount" required>
-      <br>
-      <button type="submit">Add Spend</button>
-    </form>
-    <br>
-    <button id="download-report">Download Report</button>
-    <script src="spend-tracker.js"></script>
+    <? if (action == 'submit') { ?>
+      <p>Data has been successfully submitted.</p>
+    <? } else { ?>
+      <form id="myForm">
+        <input type="text" name="fecha" placeholder="Fecha">
+        <input type="text" name="categoria" placeholder="Categoria">
+        <input type="text" name="monto" placeholder="Monto">
+        <input type="text" name="observaciones" placeholder="Observaciones">
+        <input type="text" name="usuario" placeholder="Usuario">
+        <input type="submit" value="Submit">
+      </form>
+    <? } ?>
   </body>
 </html>
