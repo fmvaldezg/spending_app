@@ -1,48 +1,42 @@
-<!DOCTYPE html>
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      function submitForm() {
-        var fecha = $("#fecha").val();
-        var categoria = $("#categoria").val();
-        var monto = $("#monto").val();
-        var observaciones = $("#observaciones").val();
-        var usuario = $("#usuario").val();
-        
-        $.ajax({
-          url: "https://script.google.com/macros/s/1_DrHU9UxLziwywXSBDwsiGTTmsjHu_iOE1l0lf8K5rGPuE9sJ6d6FJTx/exec",
-          type: "post",
-          data: {
-            "fecha": fecha,
-            "categoria": categoria,
-            "monto": monto,
-            "observaciones": observaciones,
-            "usuario": usuario
-          },
-          success: function(response) {
-            console.log("Data submitted successfully.");
-          },
-          error: function(error) {
-            console.error("Error submitting data.");
-          }
-        });
-      }
-    </script>
   </head>
   <body>
-    <form>
-      <label for="fecha">Fecha:</label>
-      <input type="text" id="fecha" name="fecha"><br><br>
-      <label for="categoria">Categoría:</label>
-      <input type="text" id="categoria" name="categoria"><br><br>
-      <label for="monto">Monto:</label>
-      <input type="text" id="monto" name="monto"><br><br>
-      <label for="observaciones">Observaciones:</label>
-      <input type="text" id="observaciones" name="observaciones"><br><br>
-      <label for="usuario">Usuario:</label>
-      <input type="text" id="usuario" name="usuario"><br><br>
-      <input type="button" value="Submit" onclick="submitForm()">
+    <h2>Daily Spend Tracker</h2>
+    <form id="form">
+      <label for="date">Date:</label>
+      <input type="text" id="date" name="date"><br><br>
+      <label for="amount">Amount:</label>
+      <input type="text" id="amount" name="amount"><br><br>
+      <label for="category">Category:</label>
+      <input type="text" id="category" name="category"><br><br>
+      <label for="user">User:</label>
+      <input type="text" id="user" name="user"><br><br>
+      <input type="submit" value="Submit">
     </form>
+    <p id="message"></p>
+    <script>
+      $('#form').submit(function(event){
+        event.preventDefault();
+        var date = $('#date').val();
+        var amount = $('#amount').val();
+        var category = $('#category').val();
+        var user = $('#user').val();
+        $.ajax({
+          url: "https://script.google.com/macros/s/{SCRIPT_ID}/exec",
+          type: "post",
+          data: {
+            "date": date,
+            "amount": amount,
+            "category": category,
+            "user": user
+          },
+          success: function(response){
+            $('#message').text('Data submitted successfully.');
+          }
+        });
+      });
+    </script>
   </body>
 </html>
